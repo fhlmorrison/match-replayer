@@ -1,5 +1,8 @@
 # FRC Match Replayer
-
+Project Goals: 
+- Replay videos and logs of FRC matches in sync.
+- Import logs and videos from robot and external cameras based on configuration
+- Browse library of matches saved to device
 
 
 
