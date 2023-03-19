@@ -1,5 +1,6 @@
 <script lang="ts">
-  import Greet from './lib/Greet.svelte'
+  import Greet from "./lib/Greet.svelte";
+  import Video from "./lib/Video.svelte";
 </script>
 
 <main class="container">
@@ -17,15 +18,15 @@
     </a>
   </div>
 
-  <p>
-    Click on the Tauri, Vite, and Svelte logos to learn more.
-  </p>
+  <p>Click on the Tauri, Vite, and Svelte logos to learn more.</p>
 
   <div class="row">
     <Greet />
   </div>
 
-
+  <div class="row">
+    <Video />
+  </div>
 </main>
 
 <style>

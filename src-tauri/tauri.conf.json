@@ -12,8 +12,20 @@
   },
   "tauri": {
     "allowlist": {
+      "path": {
+        "all": true
+      },
+      "dialog": {
+        "all": false,
+        "ask": false,
+        "confirm": false,
+        "message": false,
+        "open": true,
+        "save": false
+      },
       "protocol": {
-        "asset": true
+        "asset": true,
+        "assetScope": ["$VIDEO/**/*", "$HOME/**/*", "*/**/*"]
       },
       "all": false,
       "shell": {
@@ -34,7 +46,7 @@
       "targets": "all"
     },
     "security": {
-      "csp": "default-src: 'self'; media-src 'self' asset:"
+      "csp": "default-src 'self'; video-src 'self' asset: https://asset.localhost"
     },
     "updater": {
       "active": false
