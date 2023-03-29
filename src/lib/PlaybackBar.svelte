@@ -1,7 +1,15 @@
 <script lang="ts">
-  import { currentTime, totalTime } from "../stores";
+  import { currentTime, totalTime, paused } from "../stores";
+  import MdPlayArrow from "svelte-icons/md/MdPlayArrow.svelte";
+  import MdPause from "svelte-icons/md/MdPause.svelte";
+  import MdFastForward from "svelte-icons/md/MdFastForward.svelte";
+  import MdFastRewind from "svelte-icons/md/MdFastRewind.svelte";
 
   const FRAMERATE = 30;
+
+  const togglePause = () => {
+    paused.update((val) => !val);
+  };
 
   const timeFormat = (time) => {
     const minutes = Math.floor(time / 60);
@@ -39,28 +47,81 @@
   };
 </script>
 
-<!-- Playback slider -->
-<div class="playback-bar">
-  <div
-    class="playback-bar__slider"
-    on:click={jumpTo}
-    bind:this={slider}
-    on:keydown={keySeek}
-  >
+<div class="playback-container">
+  <!-- Playback slider -->
+  <div class="playback-bar">
     <div
-      class="playback-bar__slider__progress"
-      style={`width: ${($currentTime * 100) / $totalTime}%`}
-    />
+      class="playback-bar__slider"
+      on:click={jumpTo}
+      bind:this={slider}
+      on:keydown={keySeek}
+    >
+      <div
+        class="playback-bar__slider__progress"
+        style={`width: ${($currentTime * 100) / $totalTime}%`}
+      />
+    </div>
+    <div class="playback-bar__time">
+      <span class="playback-bar__time__current">{timeFormat($currentTime)}</span
+      >
+      <span>/</span>
+      <span class="playback-bar__time__total">{timeFormat($totalTime)}</span>
+    </div>
   </div>
-  <div class="playback-bar__time">
-    <span class="playback-bar__time__current">{timeFormat($currentTime)}</span>
-    <span>/</span>
-    <span class="playback-bar__time__total">{timeFormat($totalTime)}</span>
+  <!-- Pause button -->
+  <div class="button-bar">
+    <div class="button-bar_group">
+      <button class="icon" on:click={seek(-5)}>
+        <MdFastRewind />
+      </button>
+      <button class="icon" on:click={togglePause}>
+        {#if $paused}
+          <MdPlayArrow />
+        {:else}
+          <MdPause />
+        {/if}
+      </button>
+      <button class="icon" on:click={seek(5)}>
+        <MdFastForward />
+      </button>
+    </div>
   </div>
 </div>
 
 <!-- markup (zero or more items) goes here -->
 <style>
+  .playback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  .icon {
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .button-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .button-bar_group {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 25%;
+    height: 100%;
+  }
+
   .playback-bar {
     display: flex;
     align-items: center;
