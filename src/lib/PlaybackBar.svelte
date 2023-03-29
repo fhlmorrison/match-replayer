@@ -54,6 +54,7 @@
     min={0}
     max={$totalTime}
     step={1 / FRAMERATE}
+    style={`--input-value: ${($currentTime * 100) / $totalTime}%`}
   />
   <!-- Playback slider -->
   <div class="playback-bar">
@@ -97,22 +98,46 @@
 
 <!-- markup (zero or more items) goes here -->
 <style>
+  * {
+    --slider-primary-color: #f00;
+    --slider-secondary-color: #000;
+    --light-text-color: #fff;
+  }
+  /* Style input range with red and black */
   input[type="range"] {
-    /* -webkit-appearance: none; */
-    /* appearance: none; */
-    /* background: transparent; */
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
     width: 100%;
-    padding: 0;
+    height: 10px;
+    border-radius: 5px;
+    margin: 0 10px;
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
-    /* background: #f00; */
-    border-radius: 10px;
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: linear-gradient(
+      to right,
+      var(--slider-primary-color) 0%,
+      var(--slider-primary-color) var(--input-value),
+      var(--slider-secondary-color) var(--input-value),
+      var(--slider-secondary-color) 100%
+    );
+    border-radius: 5px;
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    color: #000;
-    border-radius: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #f00;
+    cursor: pointer;
+    margin-top: -5px;
   }
 
   .playback-container {
