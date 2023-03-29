@@ -48,6 +48,13 @@
 </script>
 
 <div class="playback-container">
+  <input
+    type="range"
+    bind:value={$currentTime}
+    min={0}
+    max={$totalTime}
+    step={1 / FRAMERATE}
+  />
   <!-- Playback slider -->
   <div class="playback-bar">
     <div
@@ -90,6 +97,24 @@
 
 <!-- markup (zero or more items) goes here -->
 <style>
+  input[type="range"] {
+    /* -webkit-appearance: none; */
+    /* appearance: none; */
+    /* background: transparent; */
+    width: 100%;
+    padding: 0;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    /* background: #f00; */
+    border-radius: 10px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    color: #000;
+    border-radius: 10px;
+  }
+
   .playback-container {
     display: flex;
     flex-direction: column;
