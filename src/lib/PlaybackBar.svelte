@@ -6,6 +6,7 @@
   import MdFastRewind from "svelte-icons/md/MdFastRewind.svelte";
 
   const FRAMERATE = 30;
+  const SEEK_STEP = 10;
 
   const togglePause = () => {
     paused.update((val) => !val);
@@ -60,7 +61,7 @@
   <div class="button-bar">
     <div />
     <div class="button-bar_group">
-      <button class="icon" on:click={seek(-5)}>
+      <button class="icon" on:click={seek(-SEEK_STEP)}>
         <MdFastRewind />
       </button>
       <button class="icon" on:click={togglePause}>
@@ -70,7 +71,7 @@
           <MdPause />
         {/if}
       </button>
-      <button class="icon" on:click={seek(5)}>
+      <button class="icon" on:click={seek(SEEK_STEP)}>
         <MdFastForward />
       </button>
     </div>
