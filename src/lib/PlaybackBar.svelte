@@ -1,7 +1,6 @@
 <script lang="ts">
   import { currentTime, totalTime } from "../stores";
 
-  let paused = false;
   const FRAMERATE = 30;
 
   const timeFormat = (time) => {

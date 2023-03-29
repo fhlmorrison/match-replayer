@@ -1,12 +1,11 @@
 <script>
   import { openVideo } from "./loadAssets";
-  import { currentTime, totalTime } from "../stores";
+  import { currentTime, totalTime, paused } from "../stores";
   import MdVolumeUp from "svelte-icons/md/MdVolumeUp.svelte";
   import MdVolumeOff from "svelte-icons/md/MdVolumeOff.svelte";
 
   let src = "";
   let muted = false;
-  let paused = true;
   let hovered = false;
   let duration;
   const getVideo = async () => {
@@ -22,9 +21,9 @@
     <!-- svelte-ignore a11y-media-has-caption -->
     <video
       bind:currentTime={$currentTime}
-      on:click={() => (paused = !paused)}
+      on:click={() => paused.update((val) => !val)}
       bind:duration={$totalTime}
-      bind:paused
+      bind:paused={$paused}
       bind:muted
     >
       <source type="video/mp4" {src} />
