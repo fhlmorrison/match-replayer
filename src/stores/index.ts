@@ -1,1 +1,1 @@
-export * from './time'
+export { currentTime, totalTime } from "./time";
