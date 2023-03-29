@@ -53,7 +53,7 @@
     bind:value={$currentTime}
     min={0}
     max={$totalTime}
-    step={1 / FRAMERATE}
+    step={1 / (10 * FRAMERATE)}
     style={`--input-value: ${($currentTime * 100) / $totalTime}%`}
   />
   <!-- Playback slider -->
