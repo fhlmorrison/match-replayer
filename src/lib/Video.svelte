@@ -1,6 +1,6 @@
 <script>
   import { openVideo } from "./loadAssets";
-  import { currentTime } from "../stores";
+  import { currentTime, totalTime } from "../stores";
   import MdVolumeUp from "svelte-icons/md/MdVolumeUp.svelte";
   import MdVolumeOff from "svelte-icons/md/MdVolumeOff.svelte";
 
@@ -23,7 +23,7 @@
     <video
       bind:currentTime={$currentTime}
       on:click={() => (paused = !paused)}
-      bind:duration
+      bind:duration={$totalTime}
       bind:paused
       bind:muted
     >
