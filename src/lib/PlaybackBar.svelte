@@ -98,7 +98,7 @@
 
 <!-- markup (zero or more items) goes here -->
 <style>
-  * {
+  :root {
     --slider-primary-color: #f00;
     --slider-secondary-color: #000;
     --light-text-color: #fff;
@@ -135,7 +135,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #f00;
+    background: var(--slider-primary-color);
     cursor: pointer;
     margin-top: -5px;
   }
