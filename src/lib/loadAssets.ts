@@ -13,7 +13,7 @@ export async function openVideo() {
       },
     ],
   })) as string;
-  return convertFileSrc(file);
+  return file ? convertFileSrc(file) : "";
 }
 
 export async function loadVideo(relativePath: string) {
