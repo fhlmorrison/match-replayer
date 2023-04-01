@@ -4,84 +4,22 @@
     import MdDragHandle from "svelte-icons/md/MdDragHandle.svelte";
     import MdClose from "svelte-icons/md/MdClose.svelte";
     import GridItem from "./GridItem.svelte";
+    import { items } from "../stores";
 
-    const COLUMNS = 6;
+    const cols = items.cols;
     let fillSpace = false;
-
-    const id = () => "_" + Math.random().toString(36).substr(2, 9);
-
-    let items = [
-        {
-            [COLUMNS]: gridHelp.item({
-                x: 0,
-                y: 0,
-                w: 2,
-                h: 2,
-                customDragger: true,
-            }),
-            id: id(),
-        },
-
-        {
-            [COLUMNS]: gridHelp.item({
-                x: 2,
-                y: 0,
-                w: 2,
-                h: 2,
-                customDragger: true,
-            }),
-            id: id(),
-        },
-    ];
-
-    const cols = [[1200, 6]];
-
-    function add() {
-        let newItem = {
-            6: gridHelp.item({
-                w: 2,
-                h: 2,
-                x: 0,
-                y: 0,
-                customDragger: true,
-            }),
-            id: id(),
-        };
-
-        let findOutPosition = gridHelp.findSpace(newItem, items, COLUMNS);
-
-        newItem = {
-            ...newItem,
-            [COLUMNS]: {
-                ...newItem[COLUMNS],
-                ...findOutPosition,
-            },
-        };
-
-        items = [...items, ...[newItem]];
-    }
-
-    const remove = (item) => {
-        items = items.filter((value) => value.id !== item.id);
-
-        if (adjustAfterRemove) {
-            items = gridHelp.adjust(items, COLUMNS);
-        }
-    };
-
-    let adjustAfterRemove = false;
 </script>
 
-<button on:click={add}>Add</button>
-<label>
+<button on:click={items.add}>Add</button>
+<!-- <label>
     <input type="checkbox" bind:checked={adjustAfterRemove} />
     Adjust elements after removing an item
-</label>
+</label> -->
 
 <div class="demo-container">
     <Grid
         {fillSpace}
-        bind:items
+        bind:items={$items}
         rowHeight={100}
         let:item
         let:dataItem
@@ -91,10 +29,10 @@
         <div class="demo-widget">
             <div
                 on:pointerdown={(e) => e.stopPropagation()}
-                on:click={() => remove(dataItem)}
+                on:click={() => items.remove(dataItem)}
                 on:keypress={(e) => {
                     if (e.key === "Enter") {
-                        remove(dataItem);
+                        items.remove(dataItem);
                     }
                 }}
                 class="remove icon"
