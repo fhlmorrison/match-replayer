@@ -67,11 +67,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
-        max-width: 90%;
+        width: 300px;
+        max-height: 100%;
+        margin: 0 10px;
     }
 
     .selection-item {
         position: relative;
+        display: flex;
+        align-content: center;
+        justify-content: center;
         background-color: #fff;
         padding: 10px;
         border-radius: 5px;
@@ -86,7 +91,11 @@
     }
 
     .icon {
+        display: flex;
+        align-self: center;
+        justify-self: center;
         height: 100%;
+        max-height: 100px;
     }
 
     .selection-item:hover .tooltip {
