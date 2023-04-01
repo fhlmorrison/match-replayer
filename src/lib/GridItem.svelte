@@ -1,17 +1,19 @@
 <script lang="ts">
     import MdVideocam from "svelte-icons/md/MdVideocam.svelte";
     import MdAssignment from "svelte-icons/md/MdAssignment.svelte";
+    import Video from "./Video.svelte";
     import type { type } from "os";
 
     // your script goes here
 
-    type ViewItemIcon = typeof MdVideocam;
+    type Component = typeof MdVideocam;
     type ViewItemType = "video" | "dslog" | "robotlog";
 
     type ViewItem = {
         type: ViewItemType;
         description: string;
-        icon: ViewItemIcon;
+        icon: Component;
+        component?: Component;
     };
 
     const items: ViewItem[] = [
@@ -19,6 +21,7 @@
             type: "video",
             description: "Video",
             icon: MdVideocam,
+            component: Video,
         },
         {
             type: "dslog",
@@ -32,19 +35,32 @@
         },
     ];
 
-    import Video from "./Video.svelte";
+    let selectedItem: ViewItem | null = null;
 </script>
 
-<div class="item-selector">
-    {#each items as item}
-        <div class="selection-item" aria-label={item.description} style="aria-">
-            <span class="tooltip">{item.description}</span>
-            <div class="icon">
-                <svelte:component this={item.icon} />
+{#if selectedItem}
+    <svelte:component this={selectedItem.component} />
+{:else}
+    <div class="item-selector">
+        {#each items as item}
+            <div
+                class="selection-item"
+                aria-label={item.description}
+                on:keypress={(e) => {
+                    if (e.key === "Enter") {
+                        selectedItem = item;
+                    }
+                }}
+                on:click={() => (selectedItem = item)}
+            >
+                <span class="tooltip">{item.description}</span>
+                <div class="icon">
+                    <svelte:component this={item.icon} />
+                </div>
             </div>
-        </div>
-    {/each}
-</div>
+        {/each}
+    </div>
+{/if}
 
 <style>
     .item-selector {
