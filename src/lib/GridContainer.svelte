@@ -2,13 +2,12 @@
     import Grid from "svelte-grid";
     import gridHelp from "svelte-grid/build/helper/index.mjs";
     import MdDragHandle from "svelte-icons/md/MdDragHandle.svelte";
+    import MdClose from "svelte-icons/md/MdClose.svelte";
 
     const COLUMNS = 6;
-    let fillSpace = true;
+    let fillSpace = false;
 
     const id = () => "_" + Math.random().toString(36).substr(2, 9);
-
-    const randomNumberInRange = (min, max) => Math.random() * (max - min) + min;
 
     let items = [
         {
@@ -72,7 +71,7 @@
     let adjustAfterRemove = false;
 </script>
 
-<button on:click={add}>Add (random size)</button>
+<button on:click={add}>Add</button>
 <label>
     <input type="checkbox" bind:checked={adjustAfterRemove} />
     Adjust elements after removing an item
@@ -89,17 +88,21 @@
         let:movePointerDown
     >
         <div class="demo-widget">
-            <span
+            <div
                 on:pointerdown={(e) => e.stopPropagation()}
                 on:click={() => remove(dataItem)}
-                class="remove"
+                on:keypress={(e) => {
+                    if (e.key === "Enter") {
+                        remove(dataItem);
+                    }
+                }}
+                class="remove icon"
             >
-                ✕
-            </span>
+                <MdClose />
+            </div>
             <div on:pointerdown={movePointerDown} class="drag icon">
                 <MdDragHandle />
             </div>
-            <p>{dataItem.id}</p>
         </div>
     </Grid>
 </div>
@@ -133,6 +136,8 @@
         left: 5px;
         top: 3px;
         user-select: none;
+    }
+    .icon {
         width: 20px;
     }
 
