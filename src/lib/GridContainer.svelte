@@ -10,12 +10,6 @@
     let fillSpace = false;
 </script>
 
-<button on:click={items.add}>Add</button>
-<!-- <label>
-    <input type="checkbox" bind:checked={adjustAfterRemove} />
-    Adjust elements after removing an item
-</label> -->
-
 <div class="demo-container">
     <Grid
         {fillSpace}
