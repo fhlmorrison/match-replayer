@@ -3,6 +3,7 @@
     import gridHelp from "svelte-grid/build/helper/index.mjs";
     import MdDragHandle from "svelte-icons/md/MdDragHandle.svelte";
     import MdClose from "svelte-icons/md/MdClose.svelte";
+    import GridItem from "./GridItem.svelte";
 
     const COLUMNS = 6;
     let fillSpace = false;
@@ -103,6 +104,7 @@
             <div on:pointerdown={movePointerDown} class="drag icon">
                 <MdDragHandle />
             </div>
+            <GridItem />
         </div>
     </Grid>
 </div>
