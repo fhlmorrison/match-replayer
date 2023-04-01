@@ -125,6 +125,7 @@
     }
 
     .remove {
+        z-index: 1;
         cursor: pointer;
         position: absolute;
         right: 5px;
@@ -133,6 +134,7 @@
     }
 
     .drag {
+        z-index: 1;
         cursor: grab;
         position: absolute;
         left: 5px;
