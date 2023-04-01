@@ -4,6 +4,7 @@
     import MdDragHandle from "svelte-icons/md/MdDragHandle.svelte";
 
     const COLUMNS = 6;
+    let fillSpace = true;
 
     const id = () => "_" + Math.random().toString(36).substr(2, 9);
 
@@ -79,6 +80,7 @@
 
 <div class="demo-container">
     <Grid
+        {fillSpace}
         bind:items
         rowHeight={100}
         let:item
@@ -105,7 +107,6 @@
 <style>
     .demo-widget {
         background: #f1f1f1;
-        max-height: 100vh;
         height: 100%;
         width: 100%;
         display: flex;
@@ -115,6 +116,7 @@
 
     .demo-container {
         width: 100%;
+        /* background: linear-gradient(45deg, #705252, #e1e1e1); */
     }
 
     .remove {
