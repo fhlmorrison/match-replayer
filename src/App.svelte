@@ -1,4 +1,5 @@
 <script lang="ts">
+  import GridContainer from "./lib/GridContainer.svelte";
   import PlaybackBar from "./lib/PlaybackBar.svelte";
   import Video from "./lib/Video.svelte";
 </script>
@@ -10,4 +11,5 @@
   <div class="row">
     <PlaybackBar />
   </div>
+  <GridContainer />
 </main>

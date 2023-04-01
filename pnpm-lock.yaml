@@ -8,6 +8,7 @@ specifiers:
   '@types/node': ^18.7.10
   svelte: ^3.54.0
   svelte-check: ^3.0.0
+  svelte-grid: ^5.1.1
   svelte-icons: ^2.1.0
   svelte-preprocess: ^5.0.0
   tslib: ^2.4.1
@@ -24,6 +25,7 @@ devDependencies:
   '@types/node': 18.15.3
   svelte: 3.57.0
   svelte-check: 3.1.4_svelte@3.57.0
+  svelte-grid: 5.1.1
   svelte-icons: 2.1.0
   svelte-preprocess: 5.0.3_wkdgp32a7s6524odeddpfzb52q
   tslib: 2.5.0
@@ -866,6 +868,10 @@ packages:
       - sass
       - stylus
       - sugarss
+    dev: true
+
+  /svelte-grid/5.1.1:
+    resolution: {integrity: sha512-PJTC4PUejb8RzcUjymWnf1HALqseUBwxl+p+i5uJlDIC1+zXKok1J16IDoHQxXhNj+INcF9KHE7hIm++NurSAQ==}
     dev: true
 
   /svelte-hmr/0.15.1_svelte@3.57.0:
