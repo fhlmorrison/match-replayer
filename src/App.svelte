@@ -5,9 +5,6 @@
 </script>
 
 <main class="container">
-  <div class="row">
-    <Video />
-  </div>
   <GridContainer />
 </main>
 <footer class="footer">
