@@ -30,7 +30,7 @@
   };
 
   const seek = (s: number) => () => {
-    currentTime.update((n) => Math.max(n + s, $totalTime));
+    currentTime.update((n) => Math.min(n + s, $totalTime));
   };
 
   const keySeek = (e: KeyboardEvent) => {
