@@ -8,8 +8,8 @@
   <div class="row">
     <Video />
   </div>
-  <div class="row">
-    <PlaybackBar />
-  </div>
   <GridContainer />
 </main>
+<footer class="footer">
+  <PlaybackBar />
+</footer>

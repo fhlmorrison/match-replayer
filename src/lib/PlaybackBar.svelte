@@ -131,7 +131,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    margin: auto;
+    width: 90%;
     height: 100%;
   }
 
